@@ -1,0 +1,35 @@
+<template>
+    <lightning-card title="Custom Data Table">
+        <div class="slds-m-around_medium">
+            <lightning-input 
+              label="Enter some text"
+              onchange={handleKeyChange}
+              value={searchKey}
+            ></lightning-input>
+        </div>
+
+        <lightning-datatable
+          key-field="Id"
+          data={recordsToDisplay}
+          columns={columns}
+          sorted-direction={sortDirection}
+          sorted-by={sortedBy}
+          onsort={onHandleSort}
+          draft-values={draftValues}
+          onsave={handleSave}
+        ></lightning-datatable>
+
+        <c-custom-paginator
+            page-size={pageSize}
+            total-records={totalRecords}
+            page-number={pageNumber}
+            is-client-side-pagination="true"
+            onpaginationchange={paginationChangeHandler}>
+        </c-custom-paginator></c-custom-paginator>
+
+        <template lwc:if={isVisible}>
+            <p>No Records Found</p>
+        </template>
+
+    </lightning-card>
+</template>
